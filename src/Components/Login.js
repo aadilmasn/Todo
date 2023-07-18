@@ -10,8 +10,8 @@ export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const users = useSelector((state) => state.login.users);
-  const stat = useSelector((state) => state.login.status);
+  const users = useSelector((state) => state.product.users);
+  const stat = useSelector((state) => state.product.status);
   const [formValues, setFormValues] = useState(loginFormValues);
 
   useEffect(() => {
@@ -30,9 +30,10 @@ export const Login = () => {
         item.regpass === formValues.logpass
       ) {
         dispatch(loginFunc());
-        dispatch(currentFunc(formValues.logmail));
+        dispatch(currentFunc(item.id));
         navigate("/");
       }
+      return item;
     });
     
     // if (formValues.logmail === "" && formValues.logpass === "") {

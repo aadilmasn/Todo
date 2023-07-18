@@ -1,23 +1,34 @@
 import React, { useState } from "react";
-import { Input } from "../Comps/Input";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
-import { addPostFunc, addProductFunc, addServiceFunc } from "../Redux/action";
+import { Input } from "./Input";
+import {
+  addPostFunc,
+  addProductFunc,
+  addServiceFunc,
+  registerFunc,
+} from "../Redux/action";
 import { useDispatch } from "react-redux";
 
-export const MiniModal = (props) => {
-  const { inputs, list } = props;
+export const Modals = (props) => {
+  const { inputt, list, names, match, ids } = props;
   const dispatch = useDispatch();
   const [formValues, setFormValues] = useState(list);
 
   const handleChange = (e) => {
     e.preventDefault();
-    setFormValues({ ...formValues, [e.target.name]: e.target.value, id: list.id });
+    setFormValues({ ...formValues, [e.target.name]: e.target.value, id: ids });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(list.id);
+    if (names === "Product") {
+      dispatch(addProductFunc(formValues));
+    } else if (names === "Post") {
+      dispatch(addPostFunc(formValues));
+    } else if (names === "Service") {
+      dispatch(addServiceFunc(formValues));
+    } else if (names === "User") {
+      dispatch(registerFunc(formValues));
+    }
     setFormValues(list);
   };
 
@@ -25,31 +36,31 @@ export const MiniModal = (props) => {
     <>
       {/* Start Add  */}
       <button
-        className="btn btn-outline-dark m-1"
         type="button"
+        className="btn btn-outline-primary my-2"
         data-bs-toggle="modal"
-        data-bs-target="#update"
+        data-bs-target={match}
       >
-        <FontAwesomeIcon icon={faPenToSquare} />
+        Add {names}
       </button>
       <div
         className="modal fade"
-        id="update"
+        id={names}
         data-bs-backdrop="static"
         data-bs-keyboard="false"
         tabIndex="-1"
-        aria-labelledby="update"
+        aria-labelledby={names}
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h1 className="modal-title fs-5" id="update">
-                Edit Details
+              <h1 className="modal-title fs-5" id={names}>
+                Add {names}
               </h1>
             </div>
             <div className="modal-body">
-              {inputs.map((item) => {
+              {inputt.map((item) => {
                 return (
                   <Input
                     key={item.name}
@@ -74,7 +85,7 @@ export const MiniModal = (props) => {
                 className="btn btn-primary"
                 data-bs-dismiss="modal"
               >
-                Update
+                Add {names}
               </button>
             </div>
           </div>

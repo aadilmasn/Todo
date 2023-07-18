@@ -16,8 +16,7 @@ export const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const users = useSelector((state) => state.login.users);
-  const stat = useSelector((state) => state.login.status);
+  const stat = useSelector((state) => state.product.status);
 
   useEffect(() => {
     if (!stat) navigate("/auth");

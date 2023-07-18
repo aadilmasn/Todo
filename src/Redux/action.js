@@ -13,7 +13,7 @@ export const currentFunc = (data) => ({
   payload: data,
 });
 export const cartNumFunc = (data) => ({
-  type: "CARTNUM",
+  type: "CART",
   payload: data,
 });
 
@@ -39,6 +39,10 @@ export const delPostFunc = (data) => ({
 });
 export const delServiceFunc = (data) => ({
   type: "DELSR",
+  payload: data,
+});
+export const delUserFunc = (data) => ({
+  type: "DELUSER",
   payload: data,
 });
 export const upProductFunc = (data) => ({

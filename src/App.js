@@ -8,7 +8,7 @@ import { Settings } from "./Components/Settings";
 import { Services } from "./Components/Services";
 import { Blog } from "./Components/Blog";
 import { Cart } from "./Components/Cart";
-import { Admin } from "./Admin/Admin";
+import { Admin } from "./Components/Admin";
 
 function App() {
   return (

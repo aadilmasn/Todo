@@ -1,3 +1,12 @@
+export const initialState = {
+  products: [],
+  services: [],
+  posts: [],
+  users: [],
+  status: false,
+  current: "",
+};
+
 export const loginFormValues = { logmail: "", logpass: "" };
 
 export const loginInputValues = [
@@ -19,17 +28,40 @@ export const loginInputValues = [
   },
 ];
 export const registerFormValues = {
-  id:"",
+  id: "",
+  regname: "",
+  regmobile: "",
   regmail: "",
   regpass: "",
   regconfirm: "",
+  address: "",
+  cart: 0,
+  products: [],
+  services: [],
+  messages: [],
 };
 
 export const registerInputValues = [
   {
+    name: "regname",
+    type: "text",
+    placeholder: "Enter Name",
+    required: true,
+    autoComplete: "off",
+    className: "form-control w-100 mb-3 mx-auto",
+  },
+  {
+    name: "regmobile",
+    type: "number",
+    placeholder: "Enter Phone",
+    required: true,
+    autoComplete: "off",
+    className: "form-control w-100 mb-3 mx-auto",
+  },
+  {
     name: "regmail",
     type: "email",
-    placeholder: "Email or Phone",
+    placeholder: "Enter Email",
     required: true,
     autoComplete: "off",
     className: "form-control w-100 mb-3 mx-auto",
@@ -84,7 +116,7 @@ export const productInputValues = [
 ];
 
 export const productFormValues = {
-  id:"",
+  id: "",
   productName: "",
   productPrice: 0,
   productDesc: "",
@@ -122,7 +154,7 @@ export const serviceInputValues = [
 ];
 
 export const serviceFormValues = {
-  id:"",
+  id: "",
   serviceName: "",
   servicePrice: 0,
   serviceDesc: "",
@@ -153,7 +185,7 @@ export const postInputValues = [
 ];
 
 export const postFormValues = {
-  id:"",
+  id: "",
   postName: "",
   postDesc: "",
   postImg: "",

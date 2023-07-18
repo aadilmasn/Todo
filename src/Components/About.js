@@ -1,19 +1,9 @@
-import React, { useState } from "react";
-import {
-  productInputValues,
-  productFormValues,
-  postInputValues,
-  postFormValues,
-  serviceInputValues,
-  serviceFormValues,
-} from "../Database/input";
+import React from "react";
 import "../Styles/about.css";
 import { Sidebar } from "../Comps/Sidebar";
 import { Navbar } from "../Comps/Navbar";
-import { Modals } from "../Admin/Modals";
 
 export const About = () => {
-
 
   return (
     <div className="container-fluid">
@@ -25,7 +15,6 @@ export const About = () => {
           </h4>
           <hr />
           <h3>About Us</h3>
-          
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
-import React, { useId, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/register.css";
+import { v4 as uuidv4 } from 'uuid';
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerFunc, currentFunc } from "../Redux/action";
@@ -7,10 +8,10 @@ import { registerFormValues, registerInputValues } from "../Database/input";
 import { Input } from "../Comps/Input";
 
 export const Register = () => {
-  const stat = useSelector((state) => state.login.status);
+  const stat = useSelector((state) => state.product.status);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const ids = useId();
+  const ids = uuidv4();
 
   useEffect(() => {
     if (stat) navigate("/");
@@ -28,7 +29,7 @@ export const Register = () => {
       alert("Invalid Input");
     } else {
       dispatch(registerFunc(formValues));
-      dispatch(currentFunc(formValues.regmail));
+      dispatch(currentFunc(formValues.id));
     }
   };
   return (
