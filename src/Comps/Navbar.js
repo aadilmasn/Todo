@@ -11,12 +11,7 @@ import {
 export const Navbar = () => {
   const navigate = useNavigate();
   const status = useSelector((state) => state.product.status);
-  const ids = useSelector((state) => state.product.current);
-  const datas = useSelector((state) => state.product.users);
-  const name = datas
-    .filter((item) => item.id === ids)
-    .map((item) => item.regname);
-  const cart = datas.filter((item) => item.id === ids).map((item) => item.cart);
+  const carts = useSelector((state) => state.product.cart);
 
   useEffect(() => {
     if (!status) navigate("/auth");
@@ -45,14 +40,16 @@ export const Navbar = () => {
             <FontAwesomeIcon icon={faUser} />
           </button>
           <button className="btn btn-outline-success disabled me-2">
-            {name}
+            {"Hehe"}
           </button>
+          <Link to="/cart">
           <button className="btn btn-outline-primary me-2 position-relative">
             <FontAwesomeIcon icon={faCartShopping} />
             <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
-              {cart}
+              {carts}
             </span>
           </button>
+          </Link>
         </form>
       </div>
     </nav>

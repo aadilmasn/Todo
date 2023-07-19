@@ -3,6 +3,8 @@ import { Sidebar } from "../Comps/Sidebar";
 import { Navbar } from "../Comps/Navbar";
 
 export const Home = () => {
+
+  
   return (
     <div className="container-fluid">
       <div className="row">

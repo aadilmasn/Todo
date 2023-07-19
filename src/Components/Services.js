@@ -1,12 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/about.css";
 import { Sidebar } from "../Comps/Sidebar";
 import { Navbar } from "../Comps/Navbar";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { userServiceFunc, cartFunc } from "../Redux/action";
 
 export const Services = () => {
+  const dispatch = useDispatch();
   const services = useSelector((state) => state.product.services);
   const [saved, setSaved] = useState(services);
+
+  const past = useSelector((state) => state.product.past);
+  const current = useSelector((state) => state.product.current);
+  const cart = useSelector((state) => state.product.cart);
+  const [count, setCount] = useState(cart);
+  const [carts, setCarts] = useState({});
+  const [formValues, setFormValues] = useState(past[current]);
+
+  useEffect(() => {
+    dispatch(cartFunc(count));
+  }, [count]);
+
+  const handleCart = (e, items) => {
+    e.preventDefault();
+    setCount((c) => c + 1);
+    setFormValues({
+      ...formValues,
+      services: [...formValues.services, items],
+      cart: count + 1,
+    });
+  };
+
+  const handleCartAdd = (e) => {
+    e.preventDefault();
+    setCount((c) => c + 1);
+    setFormValues({
+      ...formValues,
+      services: [...formValues.services, carts],
+      cart: count + 1,
+    });
+  };
+  const handleCartImg = (items) => {
+    setCarts(items);
+  };
+
+  const goCart = (e) => {
+    e.preventDefault();
+    dispatch(userServiceFunc(formValues));
+    dispatch(cartFunc(count));
+  };
+
   const handleSearch = (e) => {
     const words = e.target.value;
     const results = services
@@ -24,10 +67,10 @@ export const Services = () => {
           </h4>
           <hr />
           <div className="row mb-2">
-            <div className="col-4">
+            <div className="col-3">
               <h3 className="m-1">Services</h3>
             </div>
-            <div className="col-3 offset-4">
+            <div className="col-3 offset-1">
               <input
                 className="form-control m-2 p-2"
                 type="search"
@@ -36,6 +79,14 @@ export const Services = () => {
                 name="search"
                 onChange={(e) => handleSearch(e)}
               />
+            </div>
+            <div className="col-3 offset-2">
+              <button
+                className="btn btn-secondary m-2 p-2"
+                onClick={(e) => goCart(e)}
+              >
+                Cart
+              </button>
             </div>
           </div>
           <div className="container text-center">
@@ -58,6 +109,7 @@ export const Services = () => {
                           alt="product"
                           data-bs-toggle="modal"
                           data-bs-target="#staticBackdrop"
+                          onClick={() => handleCartImg(items)}
                         />
                         <div className="card-body">
                           <h6 className="card-title mt-1 text-start">
@@ -69,6 +121,7 @@ export const Services = () => {
                           <button
                             type="button"
                             className="btn btn-outline-primary"
+                            onClick={(e) => handleCart(e, items)}
                           >
                             Add to Cart
                           </button>
@@ -122,6 +175,7 @@ export const Services = () => {
                                   <button
                                     type="button"
                                     className="btn btn-outline-primary"
+                                    onClick={(e) => handleCartAdd(e)}
                                   >
                                     Add to Cart
                                   </button>

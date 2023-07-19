@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Styles/settings.css";
 import { Sidebar } from "../Comps/Sidebar";
 import { Navbar } from "../Comps/Navbar";
 
 export const Settings = () => {
+  
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -13,7 +15,6 @@ export const Settings = () => {
             <Navbar />
           </h4>
           <hr />
-          <h3>Settings</h3>
         </div>
       </div>
     </div>

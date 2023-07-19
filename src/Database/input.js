@@ -3,11 +3,26 @@ export const initialState = {
   services: [],
   posts: [],
   users: [],
+  past: {
+    jaf: {
+      regname: "Masn",
+      regmobile: "8122774668",
+      regmail: "aadilmasn@gmail.com",
+      regpass: "8122",
+      address: "3/257, New Street",
+      cart: 7,
+      online: false,
+      products: [],
+      services: [],
+      messages: [],
+    },
+  },
   status: false,
   current: "",
+  cart: "",
 };
 
-export const loginFormValues = { logmail: "", logpass: "" };
+export const loginFormValues = { id: "", logmail: "", logpass: "", cart: "", online:"" };
 
 export const loginInputValues = [
   {
@@ -27,6 +42,7 @@ export const loginInputValues = [
     className: "form-control w-100 mb-3 mx-auto",
   },
 ];
+
 export const registerFormValues = {
   id: "",
   regname: "",
@@ -84,6 +100,14 @@ export const registerInputValues = [
   },
 ];
 
+export const productFormValues = {
+  id: "",
+  productName: "",
+  productPrice: 0,
+  productDesc: "",
+  productImg: "",
+};
+
 export const productInputValues = [
   {
     name: "productName",
@@ -115,13 +139,14 @@ export const productInputValues = [
   },
 ];
 
-export const productFormValues = {
+export const serviceFormValues = {
   id: "",
-  productName: "",
-  productPrice: 0,
-  productDesc: "",
-  productImg: "",
+  serviceName: "",
+  servicePrice: 0,
+  serviceDesc: "",
+  serviceImg: "",
 };
+
 export const serviceInputValues = [
   {
     name: "serviceName",
@@ -153,13 +178,13 @@ export const serviceInputValues = [
   },
 ];
 
-export const serviceFormValues = {
+export const postFormValues = {
   id: "",
-  serviceName: "",
-  servicePrice: 0,
-  serviceDesc: "",
-  serviceImg: "",
+  postName: "",
+  postDesc: "",
+  postImg: "",
 };
+
 export const postInputValues = [
   {
     name: "postName",
@@ -183,10 +208,3 @@ export const postInputValues = [
     className: "form-control w-100 mb-3 mx-auto",
   },
 ];
-
-export const postFormValues = {
-  id: "",
-  postName: "",
-  postDesc: "",
-  postImg: "",
-};

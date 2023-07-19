@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../Styles/login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginFunc, currentFunc } from "../Redux/action";
+import { loginFunc, currentFunc, cartFunc } from "../Redux/action";
 import { loginFormValues, loginInputValues } from "../Database/input";
 import { Input } from "../Comps/Input";
 
@@ -11,11 +11,14 @@ export const Login = () => {
   const dispatch = useDispatch();
 
   const users = useSelector((state) => state.product.users);
-  const stat = useSelector((state) => state.product.status);
+  const status = useSelector((state) => state.product.status);
+  const past = useSelector((state) => state.product.past);
+
   const [formValues, setFormValues] = useState(loginFormValues);
+ 
 
   useEffect(() => {
-    if (stat) navigate("/");
+    if (status) navigate("/");
   });
 
   const handleChange = (e) => {
@@ -31,25 +34,11 @@ export const Login = () => {
       ) {
         dispatch(loginFunc());
         dispatch(currentFunc(item.id));
+        dispatch(cartFunc((past[item.id].products.length) + (past[item.id].services.length)));
         navigate("/");
       }
       return item;
     });
-    
-    // if (formValues.logmail === "" && formValues.logpass === "") {
-    //   alert("Invalid Input");
-    // } else {
-    //   users
-    //     .filter(
-    //       (item) =>
-    //         item.regmail.includes(formValues.logmail) &&
-    //         item.regpass.includes(formValues.logpass)
-    //     )
-    //     .map((items) => {
-    //       dispatch(loginFunc());
-    //       navigate("/");
-    //     });
-    // }
   };
 
   return (
@@ -60,10 +49,10 @@ export const Login = () => {
       <div className="card-header">Login</div>
       <div className="card-body">
         <form onSubmit={(e) => handleSubmit(e)}>
-        {loginInputValues.map((item) => {
+          {loginInputValues.map((item) => {
             return (
               <Input
-                key = {item.name}
+                key={item.name}
                 onChange={(e) => handleChange(e)}
                 value={formValues[item.name]}
                 {...item}

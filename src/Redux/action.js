@@ -1,59 +1,100 @@
+export const loginFunc = () => ({
+  type: "LOGIN",
+});
+
+export const logoutFunc = () => ({
+  type: "LOGOUT",
+});
+
 export const registerFunc = (data) => ({
   type: "REGISTER",
   payload: data,
 });
-export const loginFunc = () => ({
-  type: "LOGIN",
+
+export const pastUserFunc = (data) => ({
+  type: "PASTUSERS",
+  payload: data,
 });
-export const logoutFunc = () => ({
-  type: "LOGOUT",
-});
+
 export const currentFunc = (data) => ({
   type: "CURRENT",
   payload: data,
 });
-export const cartNumFunc = (data) => ({
+
+export const cartFunc = (data) => ({
   type: "CART",
   payload: data,
 });
 
 export const addProductFunc = (data) => ({
-  type: "ADDPT",
+  type: "ADDPRODUCT",
   payload: data,
 });
+
 export const addPostFunc = (data) => ({
-  type: "ADDPS",
+  type: "ADDPOST",
   payload: data,
 });
+
 export const addServiceFunc = (data) => ({
-  type: "ADDSR",
+  type: "ADDSERVICE",
   payload: data,
 });
+export const addUserFunc = (data) => ({
+  type: "ADDUSER",
+  payload: data,
+});
+
 export const delProductFunc = (data) => ({
-  type: "DELPT",
+  type: "DELPRODUCT",
   payload: data,
 });
+
 export const delPostFunc = (data) => ({
-  type: "DELPS",
+  type: "DELPOST",
   payload: data,
 });
+
 export const delServiceFunc = (data) => ({
-  type: "DELSR",
+  type: "DELSERVICE",
   payload: data,
 });
+
 export const delUserFunc = (data) => ({
   type: "DELUSER",
   payload: data,
 });
+
 export const upProductFunc = (data) => ({
-  type: "UPPT",
+  type: "UPPRODUCT",
   payload: data,
 });
+
 export const upPostFunc = (data) => ({
-  type: "UPPS",
+  type: "UPPOST",
   payload: data,
 });
+
 export const upServiceFunc = (data) => ({
-  type: "UPSR",
+  type: "UPSERVICE",
+  payload: data,
+});
+export const upUserFunc = (data) => ({
+  type: "UPUSER",
+  payload: data,
+});
+
+export const userProductFunc = (data) => ({
+  type: "USERPRODUCT",
+  payload: data,
+});
+
+export const userPostFunc = (data) => ({
+  type: "USERPOST",
+  payload: data,
+});
+
+export const userServiceFunc = (data) => ({
+  type: "USERSERVICE",
   payload: data,
 });

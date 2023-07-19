@@ -1,26 +1,29 @@
 import React, { useState, useEffect } from "react";
 import "../Styles/register.css";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { registerFunc, currentFunc } from "../Redux/action";
+import { registerFunc, currentFunc, pastUserFunc, cartFunc } from "../Redux/action";
 import { registerFormValues, registerInputValues } from "../Database/input";
 import { Input } from "../Comps/Input";
 
 export const Register = () => {
-  const stat = useSelector((state) => state.product.status);
+  const id = uuidv4();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const ids = uuidv4();
 
-  useEffect(() => {
-    if (stat) navigate("/");
-  });
+  const status = useSelector((state) => state.product.status);
+  const past = useSelector((state) => state.product.past);
+  const config = useSelector((state) => state.product.past.config);
 
   const [formValues, setFormValues] = useState(registerFormValues);
 
+  useEffect(() => {
+    if (status) navigate("/");
+  });
+
   const handleChange = (e) => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value, id: ids });
+    setFormValues({ ...formValues, [e.target.name]: e.target.value, id: id });
   };
 
   const handleSubmit = (e) => {
@@ -29,9 +32,12 @@ export const Register = () => {
       alert("Invalid Input");
     } else {
       dispatch(registerFunc(formValues));
+      dispatch(pastUserFunc({ [formValues.id]: formValues }));
       dispatch(currentFunc(formValues.id));
+      dispatch(cartFunc(0));
     }
   };
+
   return (
     <div
       className="card text-center mx-auto p-3"

@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { productState } from "./Reducer/products";
+import { totalState } from "./reducer";
 
 export const store = configureStore({
   reducer: {
-    product: productState
+    product: totalState,
   },
 });
